@@ -70,10 +70,11 @@ jobs:
         run: |
           chmod +x ./deploy/deploy.sh
           IMAGE="ghcr.io/${{ steps.meta.outputs.repo }}:latest"
-          PREVIOUS="ghcr.io/${{ steps.meta.outputs.repo }}:latest"
-          
-          docker run -d --name redis -p 6379:6379 redis:7-alpine
+          docker network create app-net 2>/dev/null || true
+          docker stop redis 2>/dev/null || true
+          docker rm redis 2>/dev/null || true
+          docker run -d --name redis --network app-net -p 6379:6379 redis:7-alpine
           sleep 2
           
           docker pull "$IMAGE"
-          ./deploy/deploy.sh "$IMAGE" "$PREVIOUS"
+          ./deploy/deploy.sh "$IMAGE" "$IMAGE"
