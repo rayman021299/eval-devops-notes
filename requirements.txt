@@ -3,3 +3,4 @@ redis
 pytest
 flake8
 gunicorn
+prometheus-client

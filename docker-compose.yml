@@ -25,6 +25,18 @@ services:
       retries: 3
       start_period: 2s
 
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./observability/prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml
+    networks:
+      - app-net
+    depends_on:
+      - web
+
 networks:
   app-net:
 
