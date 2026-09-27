@@ -2,3 +2,4 @@ flask
 redis
 pytest
 flake8
+gunicorn
