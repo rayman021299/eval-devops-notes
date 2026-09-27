@@ -18,4 +18,4 @@ runs:
 
     - name: Installer les dependances
       shell: bash
-      run: pip install -r requirements.txt
+      run: pip install -r requirements.txt

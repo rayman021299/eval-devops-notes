@@ -26,7 +26,8 @@ jobs:
       - name: Lancer le linting YAML
         run: |
           pip install yamllint
-          yamllint -d "{extends: relaxed, rules: {line-length: disable}}" .
+          yamllint .
+
 
   test:
     needs: lint
